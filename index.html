@@ -29,27 +29,72 @@
     }
 
     .container {
-      max-width: 400px;
+      max-width: 460px;
       width: 90%;
     }
 
     .tagline {
       margin-bottom: 1rem;
     }
+
+    .cta {
+      display: block;
+    }
+
+    .cursor {
+      display: inline-block;
+      background-color: currentColor;
+      width: 0.6em;
+      height: 1em;
+      margin-left: 0.1em;
+    }
+
+    .cursor.fade-out {
+      opacity: 0;
+    }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <h1>Drawing Table Labs.</h1>
+    <h1><span>&gt;</span> <span id="title">Drawing Table Labs.</span></h1>
     <div class="tagline">
       👋 Hi, I'm Carter Bancroft and I provide really good software
       engineering.
     </div>
-    <div>
-      <a href="mailto:carter@carterbancroft.com" class="cta">Tell me about your project</a>
+    <div class="links">
+      <p>
+        <a href="mailto:carter@carterbancroft.com" class="cta">Work with me</a>
+      </p>
+      <a href="https://carterbancroft.com" class="cta">carterbancroft.com</a>
+      <a href="https://www.linkedin.com/in/carter-bancroft-a6b6056/" class="cta">LinkedIn</a>
+      <a href="https://github.com/carterbancroft/" class="cta">GitHub</a>
+      <a href="https://instagram.com/carterbancroft/" class="cta">Instagram</a>
     </div>
   </div>
+
+  <script>
+    const text = "Drawing Table Labs.";
+    const titleElement = document.getElementById("title");
+    let index = 0;
+
+    function typeWriter() {
+      if (index < text.length) {
+        titleElement.innerHTML =
+          text.substring(0, index + 1) + '<span class="cursor"></span>';
+        index++;
+        const randomDelay = Math.floor(Math.random() * 200) + 75;
+        setTimeout(typeWriter, randomDelay);
+      } else {
+        titleElement.innerHTML = text + '<span class="cursor"></span>';
+      }
+    }
+
+    titleElement.innerHTML = '<span class="cursor"></span>';
+    setTimeout(() => {
+      typeWriter();
+    }, 500);
+  </script>
 </body>
 
 </html>
